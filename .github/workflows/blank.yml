@@ -49,3 +49,6 @@ jobs:
             
       - name: List buckets
         run: aws s3 ls
+        
+      - name: Upload utils.py to S3
+        run: aws s3 cp utils.py s3://bucketosiosi1/utils.py
