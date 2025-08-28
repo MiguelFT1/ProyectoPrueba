@@ -50,7 +50,7 @@ jobs:
       - name: Zappa
         run: |
           source env/bin/activate
-          zappa deploy dev
+          zappa update dev
         
       - name: Upload utils.py to S3
         run: aws s3 cp utils.py s3://bucketosiosi1/app.py
