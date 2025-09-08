@@ -1,21 +1,23 @@
 {
-    "dev": {
-        "app_function": "app.f",
-        "aws_region": "us-east-1",
-        "exclude": [
-            "boto3",
-            "dateutil",
-            "botocore",
-            "s3transfer",
-            "concurrent"
-        ],
-        
-        "project_name": "proyectoprueba",
-        "runtime": "python3.10",
-        "s3_bucket": "zappa-iapuy2dgz",
-        "keep_warm": false,
-        "apigateway_enabled": false,
-        "manage_roles": false,
-        "role_name": "LabRole"
-    }
+  "dev": {
+    "app_function": "app.f",
+    "aws_region": "us-east-1",
+    "project_name": "proyectoprueba",
+    "runtime": "python3.10",
+    "s3_bucket": "zappa-iapuy2dgz",
+    "apigateway_enabled": false,
+    "keep_warm": false,
+    "manage_roles": false,
+    "role_name": "LabRole",
+    "environment_variables": {
+      "BUCKET_NAME": "dolarrawmiguel01",
+      "PREFIX": ""
+    },
+    "events": [
+      {
+        "function": "app.f",
+        "expression": "cron(0 23 * * ? *)"
+      }
+    ]
+  }
 }
