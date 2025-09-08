@@ -16,7 +16,7 @@ def test_f_subida_a_s3(monkeypatch):
         def content(self):
             return b'{"dolar":"5000"}'
 
-    monkeypatch.setattr("requests.get", lambda url: FakeResponse())
+    monkeypatch.setattr("requests.get", lambda url, **kwargs: FakeResponse())
 
     # 3) Ejecutar f() y validar
     uri = utils.f(bucket_name)
