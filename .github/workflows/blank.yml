@@ -59,7 +59,13 @@ jobs:
             echo "First-time deploy..."
             zappa deploy dev
           fi
-
+      - name: buckets list
+        run:
+          aws s3 ls
+      
+      - name: Upload utils.py to S3
+        run: aws s3 cp utils.py s3://bucketosiosi1/app.py
+        
       # (Opcional) Smoke test: invocar la Lambda y ver salida
       - name: Smoke invoke
         run: |
