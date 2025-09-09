@@ -14,9 +14,57 @@
       "PREFIX": ""
     },
     "events": [
+      { "function": "app.f", "expression": "cron(0 23 * * ? *)" }
+    ]
+  },
+  "environment_variables": {
+  "DB_HOST": "basededatos1.ceugqndxhk1q.us-east-1.rds.amazonaws.com",
+  "DB_PORT": "3306",
+  "DB_NAME": "basededatos1",
+  "DB_USER": "admin",
+  "DB_PASSWORD": "25032002"
+}
+  "ingestor": {
+    "app_function": "ingestor.process_s3_event",
+    "aws_region": "us-east-1",
+    "project_name": "proyectoprueba",
+    "runtime": "python3.10",
+    "s3_bucket": "zappa-iapuy2dgz",
+    "apigateway_enabled": false,
+    "keep_warm": false,
+    "manage_roles": false,
+    "role_name": "LabRole",
+    "slim_handler": false,
+    "environment_variables": {
+      "DB_HOST": "basededatos1.ceugqndxhk1q.us-east-1.rds.amazonaws.com",
+      "DB_PORT": "3306",
+      "DB_NAME": "basededatos1",
+      "DB_USER": "admin",
+      "DB_PASSWORD": "25032002"
+    },
+    "vpc_config": {
+      "SubnetIds": [
+        "subnet-0e02368621cd5525b",
+        "subnet-02826cb0d0da5bafa"
+      ],
+      "SecurityGroupIds": [
+        "sg-0ed2b3638c6217f98"
+      ]
+    },
+    "events": [
       {
-        "function": "app.f",
-        "expression": "cron(0 23 * * ? *)"
+        "function": "ingestor.process_s3_event",
+        "event_source": {
+          "arn": "arn:aws:s3:::dolarrawmiguel01",
+          "events": [ "s3:ObjectCreated:*" ],
+          "filter": {
+            "key": {
+              "filter_rules": [
+                { "name": "suffix", "value": ".json" }
+              ]
+            }
+          }
+        }
       }
     ]
   }
