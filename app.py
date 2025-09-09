@@ -14,7 +14,7 @@ def f(event=None, context=None):
 
     try:
         uri = run_download(bucket=bucket, prefix=prefix)
-        return {"status": "ok", "uri": uri}
+        return {"status": "Perfecto", "uri": uri}
     except Exception as e:
         return {
             "status": "error",
