@@ -20,4 +20,4 @@ def f(bucket: str, prefix: str = "") -> str:
         Body=data,
         ContentType="application/json"
     )
-    return f"s3://{bucket}/{key}"
+    return f"s3://{bucket}/{key}" 
